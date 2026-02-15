@@ -22,8 +22,9 @@ timeline
         해결 방법 : Aggressive Blur Augmentation (50%)
         최종 결과 : 90%+ 회복
         성능 향상 : +36.7%p Performance Recovery
+```
 
-flowchart TD
+```flowchart TD
     %% 전체 타이틀
     title[Research Pipeline : SNS 환경 딥페이크 탐지 강건성 연구]
     style title fill:none,stroke:none,font-size:22px,font-weight:bold
