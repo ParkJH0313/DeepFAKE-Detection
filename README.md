@@ -1,86 +1,103 @@
-# Research Pipeline - Deepfake Detection
-
-## 연구 파이프라인
+# Research Pipeline - Deepfake Detection in SNS Environment
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px', 'fontFamily':'arial'}}}%%
+
 graph LR
-    subgraph Phase1["<b>PHASE 1: Baseline Experiment</b><br/>모델 성능 벤치마크"]
-        A1["<b>Clean Images</b><br/>Accuracy: 99.3%"]
-        A2["✓ Xception 모델<br/>✓ 140K 데이터셋<br/>✓ ImageNet 전이학습"]
-        A1 ~~~ A2
+    subgraph P1["<b>PHASE 1</b><br/>Baseline Experiment<br/>────────────"]
+        A1["<b>🎯 실험 목적</b><br/>딥페이크 탐지 기본 성능 측정<br/><br/><b>📊 결과</b><br/>Accuracy: <b>99.3%</b><br/><br/><b>🔧 사용 기술</b><br/>• Xception Model<br/>• 140K Dataset<br/>• Transfer Learning"]
     end
     
-    subgraph Phase2["<b>PHASE 2: Robustness Analysis</b><br/>SNS 환경 취약점 분석"]
-        B1["<b>Gaussian Blur σ≥1.5</b><br/>Accuracy: 63.3% ↓"]
-        B2["⚠ Blur가 가장 치명적<br/>✓ JPEG 압축 강건 98%+<br/>⚠ 중앙 얼굴 영역 의존<br/>⚠ Instagram 필터 취약"]
-        B3["<b>Critical Threshold</b><br/>σ = 1.5"]
-        B1 ~~~ B2
-        B2 ~~~ B3
+    subgraph P2["<b>PHASE 2</b><br/>Robustness Analysis<br/>────────────"]
+        B1["<b>🎯 실험 목적</b><br/>SNS 환경 품질저하 영향 분석<br/><br/><b>⚠️ 핵심 발견</b><br/>Gaussian Blur σ≥1.5<br/>Accuracy: <b>63.3%</b> 급락<br/><br/><b>📌 추가 분석</b><br/>• JPEG 압축: 98%+ 유지<br/>• Spatial Masking: 중앙 의존<br/>• Instagram 시나리오 취약"]
+        B2["<b>💡 인사이트</b><br/>Critical Threshold<br/><b>σ = 1.5</b><br/>실전 배포 시<br/>치명적 약점 발견"]
     end
     
-    subgraph Phase3["<b>PHASE 3: Solution & Enhancement</b><br/>강건성 개선"]
-        C1["<b>Aggressive Augmentation</b><br/>Accuracy: 90%+ ↑"]
-        C2["✓ 모든 blur에서 회복<br/>✓ Conservative 30%<br/>✓ Standard 40%<br/>✓ Aggressive 50%"]
-        C3["<b>Performance Recovery</b><br/>+36.7%p"]
-        C1 ~~~ C2
-        C2 ~~~ C3
+    subgraph P3["<b>PHASE 3</b><br/>Solution & Enhancement<br/>────────────"]
+        C1["<b>🎯 실험 목적</b><br/>Blur 강건성 개선<br/><br/><b>🚀 해결 방법</b><br/>Blur Augmentation 적용<br/><br/><b>✅ 최종 결과</b><br/>Aggressive Aug<br/>Accuracy: <b>90%+</b><br/><br/><b>📈 성능 향상</b><br/><b>+36.7%p</b> 회복"]
     end
     
-    Phase1 ==> Phase2
-    Phase2 ==> Phase3
+    P1 ==>|"SNS 환경<br/>변형 적용"| P2
+    P2 ==>|"Data<br/>Augmentation"| P3
     
-    style Phase1 fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style Phase2 fill:#f8d7da,stroke:#d73a49,stroke-width:3px
-    style Phase3 fill:#e7d4f5,stroke:#6f42c1,stroke-width:3px
+    style P1 fill:#2d5016,stroke:#4caf50,stroke-width:4px,color:#fff
+    style P2 fill:#8b0000,stroke:#f44336,stroke-width:4px,color:#fff
+    style P3 fill:#4a148c,stroke:#9c27b0,stroke-width:4px,color:#fff
     
-    style A1 fill:#fff,stroke:#28a745,stroke-width:2px
-    style B1 fill:#fff,stroke:#d73a49,stroke-width:2px
-    style C1 fill:#fff,stroke:#6f42c1,stroke-width:2px
-    
-    style B3 fill:#667eea,stroke:#764ba2,stroke-width:2px,color:#fff
-    style C3 fill:#11998e,stroke:#38ef7d,stroke-width:2px,color:#fff
+    style A1 fill:#ffffff,stroke:#4caf50,stroke-width:3px,color:#000
+    style B1 fill:#ffffff,stroke:#f44336,stroke-width:3px,color:#000
+    style B2 fill:#1565c0,stroke:#2196f3,stroke-width:3px,color:#fff
+    style C1 fill:#ffffff,stroke:#9c27b0,stroke-width:3px,color:#000
 ```
-
-## 사용 방법
-
-위 코드를 GitHub README.md 파일에 그대로 복사해서 붙여넣으면 됩니다!
-
-## 주요 특징
-
-- ✅ **Phase 1**: Baseline 성능 (99.3%)
-- ⚠️ **Phase 2**: 문제 발견 (σ≥1.5에서 63.3%로 급락)
-- ✅ **Phase 3**: 해결책 적용 (90%+ 회복)
 
 ---
 
-## Alternative: 더 간단한 버전
+## 대안 1: 더 깔끔한 세로 레이아웃
 
 ```mermaid
-flowchart LR
-    A["Phase 1: Baseline<br/>99.3% Accuracy"] 
-    B["Phase 2: Analysis<br/>Blur Critical<br/>σ≥1.5 → 63.3%"]
-    C["Phase 3: Solution<br/>Augmentation<br/>90%+ Recovery"]
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'18px'}}}%%
+
+flowchart TB
+    A["<b>PHASE 1: Baseline Experiment</b><br/>─────────────────────<br/><br/><b>🎯 목적:</b> 기본 성능 측정<br/><br/><b>📊 Clean Images Accuracy: 99.3%</b><br/><br/>✓ Xception 전이학습<br/>✓ 140K 데이터셋<br/>✓ ImageNet pretrained weights"]
     
-    A ==>|"SNS 환경 테스트"| B
-    B ==>|"Aggressive Aug"| C
+    B["<b>PHASE 2: Robustness Analysis</b><br/>─────────────────────<br/><br/><b>🎯 목적:</b> SNS 환경 취약점 분석<br/><br/><b>⚠️ Gaussian Blur σ≥1.5: 63.3% 급락</b><br/><br/>✓ JPEG 압축 강건 98%+<br/>⚠️ 중앙 얼굴 영역 의존성<br/>⚠️ Instagram 필터 환경 취약<br/><br/><b>💡 Critical Threshold: σ = 1.5</b>"]
     
-    style A fill:#d4edda,stroke:#28a745,stroke-width:3px
-    style B fill:#f8d7da,stroke:#d73a49,stroke-width:3px
-    style C fill:#e7d4f5,stroke:#6f42c1,stroke-width:3px
+    C["<b>PHASE 3: Solution & Enhancement</b><br/>─────────────────────<br/><br/><b>🎯 목적:</b> Blur 강건성 개선<br/><br/><b>🚀 Aggressive Augmentation: 90%+ 회복</b><br/><br/>✓ Conservative 30% 적용<br/>✓ Standard 40% 적용<br/>✓ Aggressive 50% 적용<br/><br/><b>📈 Performance Recovery: +36.7%p</b>"]
+    
+    A -->|"SNS 환경<br/>품질 저하 테스트"| B
+    B -->|"Blur Data<br/>Augmentation"| C
+    
+    style A fill:#1b5e20,stroke:#4caf50,stroke-width:5px,color:#fff
+    style B fill:#b71c1c,stroke:#f44336,stroke-width:5px,color:#fff
+    style C fill:#4a148c,stroke:#9c27b0,stroke-width:5px,color:#fff
 ```
 
-## 더 간결한 버전 (추천)
+---
+
+## 대안 2: 가장 심플하고 강렬한 버전 (추천!)
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'20px', 'primaryColor':'#1b5e20', 'primaryTextColor':'#fff', 'primaryBorderColor':'#4caf50', 'lineColor':'#333', 'secondaryColor':'#b71c1c', 'tertiaryColor':'#4a148c'}}}%%
+
 graph LR
-    A[Phase 1<br/>Baseline<br/><b>99.3%</b>] 
-    B[Phase 2<br/>Analysis<br/><b>63.3%</b><br/>σ≥1.5 Critical]
-    C[Phase 3<br/>Enhancement<br/><b>90%+</b><br/>+36.7%p]
+    A["<b>PHASE 1</b><br/>Baseline<br/>─────────<br/><br/><b>99.3%</b><br/>Clean Images<br/><br/>Xception 모델<br/>140K 데이터셋"]
     
-    A -->|Robustness Test| B
-    B -->|Blur Augmentation| C
+    B["<b>PHASE 2</b><br/>분석<br/>─────────<br/><br/><b>63.3%</b><br/>Blur σ≥1.5<br/><br/>⚠️ 치명적 약점<br/>Instagram 취약"]
     
-    style A fill:#d4edda,stroke:#28a745,stroke-width:4px,color:#000
-    style B fill:#f8d7da,stroke:#d73a49,stroke-width:4px,color:#000
-    style C fill:#e7d4f5,stroke:#6f42c1,stroke-width:4px,color:#000
+    C["<b>PHASE 3</b><br/>개선<br/>─────────<br/><br/><b>90%+</b><br/>회복 성공<br/><br/>✅ Blur Aug<br/>📈 +36.7%p"]
+    
+    A ==>|"SNS 환경<br/>테스트"| B
+    B ==>|"Data<br/>Augmentation"| C
+    
+    style A fill:#1b5e20,stroke:#4caf50,stroke-width:6px,color:#fff
+    style B fill:#b71c1c,stroke:#f44336,stroke-width:6px,color:#fff
+    style C fill:#4a148c,stroke:#9c27b0,stroke-width:6px,color:#fff
+```
+
+---
+
+## 대안 3: 타임라인 스타일 (매우 명확)
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'18px'}}}%%
+
+timeline
+    title Research Pipeline : SNS 환경 딥페이크 탐지 강건성 연구
+    
+    section Phase 1 - Baseline
+        실험 목적 : 기본 성능 측정
+        결과 : 99.3% Accuracy (Clean Images)
+        기술 스택 : Xception, 140K Dataset, Transfer Learning
+    
+    section Phase 2 - Analysis  
+        실험 목적 : SNS 환경 취약점 분석
+        핵심 발견 : Gaussian Blur σ≥1.5에서 63.3%로 급락
+        추가 분석 : JPEG 강건(98%+), 중앙 의존성, Instagram 취약
+        인사이트 : Critical Threshold σ=1.5 발견
+    
+    section Phase 3 - Solution
+        실험 목적 : Blur 강건성 개선
+        해결 방법 : Aggressive Blur Augmentation (50%)
+        최종 결과 : 90%+ 회복
+        성능 향상 : +36.7%p Performance Recovery
 ```
